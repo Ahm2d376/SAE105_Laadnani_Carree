@@ -1,7 +1,9 @@
-""" Mon projet.
+""" 
 
 .. moduleauthor:: Laadnani Ahmed <ahmed.laadnani@etu.univ-poitiers.fr>
 
 """
-
-import Innocupation_des_salles
+import planning_innocupation
+import extraction_evenements
+import html
+import trouver_plages_libres
