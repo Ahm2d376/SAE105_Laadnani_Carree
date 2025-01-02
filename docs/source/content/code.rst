@@ -24,16 +24,73 @@ Pour utiliser ce programme, suivez ces étapes :
 Description des modules
 -----------------------
 
+Module principal (planning_innocupation.py)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+Programme principal d'éxecution qui va analyser les plages d'inoccupation des salles à partir du fichier ICS. il est en quelque sorte le programme final qui va utiliser tout les modules
+que nous avons crées pour arriver à ses fins.
+
+
+ 
+Arguments du programme:
+    --salle SALLE           Identifiant de la salle à analyser (ex: "RT14")
+    --date-debut DATE      Date de début de l'analyse (format: YYYY-MM-DD)
+    --date-fin DATE        Date de fin de l'analyse (format: YYYY-MM-DD)
+    --input-file FICHIER   Chemin vers le fichier ICS à analyser
+    --output-dir DOSSIER   Dossier où sauvegarder le rapport HTML
+ 
+
+Exemple d'utilisation:
+    python3 planning_innocupation.py --salle RT14 --date-debut 2024-10-01 --date-fin 2024-12-31 
+                         --input-file "ADECal (1).ics" --output-dir resultats
+
+Sortie:
+    - Crée un fichier HTML dans le dossier HTML    
+    - Le rapport liste toutes les plages d'inoccupation par date
+
+
+
+
+
+
+
 Module d'extraction des évènements
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. automodule:: extraction_evenements.extraction_evenements
+
+
+
+
+
+
    
 
 Module de calcul des plages libres
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. automodule:: trouver_plages_libres.trouver_plages_libres
+
+
+
+
+
+Module de génération des pages HTML
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+
+.. automodule:: creer_html.creer_html
+
+.. autofunction:: creer_html.convertir_duree
+
+
+
+
+
+
+
    
 
 

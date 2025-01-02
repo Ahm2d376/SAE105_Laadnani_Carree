@@ -48,8 +48,13 @@
 <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#utilisation-du-programme">Utilisation du programme</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#description-des-modules">Description des modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-principal-planning-innocupation-py">Module principal (planning_innocupation.py)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-extraction_evenements.extraction_evenements">Module d’extraction des évènements</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-trouver_plages_libres.trouver_plages_libres">Module de calcul des plages libres</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-creer_html.creer_html">Module de génération des pages HTML</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#creer_html.convertir_duree"><code class="docutils literal notranslate"><span class="pre">convertir_duree()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -100,62 +105,120 @@
 </section>
 <section id="description-des-modules">
 <h2>Description des modules<a class="headerlink" href="#description-des-modules" title="Lien permanent vers cette rubrique"></a></h2>
-<section id="module-extraction_evenements.extraction_evenements">
-<span id="module-d-extraction-des-evenements"></span><h3>Module d’extraction des évènements<a class="headerlink" href="#module-extraction_evenements.extraction_evenements" title="Lien permanent vers cette rubrique"></a></h3>
-<p>Extrait les heures de début et de fin des événements pour une salle donnée.</p>
-<p>Auteur: Ahmed
-Date de création: 2024-03-20
-Dernière modification: 2024-03-20</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>lines (list): Liste des lignes du fichier ICS
-salle (str): Identifiant de la salle à rechercher (ex: « RT04 »)</p>
+<section id="module-principal-planning-innocupation-py">
+<h3>Module principal (planning_innocupation.py)<a class="headerlink" href="#module-principal-planning-innocupation-py" title="Lien permanent vers cette rubrique"></a></h3>
+<p>Programme principal d’éxecution qui va analyser les plages d’inoccupation des salles à partir du fichier ICS. il est en quelque sorte le programme final qui va utiliser tout les modules
+que nous avons crées pour arriver à ses fins.</p>
+<dl>
+<dt>Arguments du programme:</dt><dd><dl class="option-list">
+<dt><kbd><span class="option">--salle <var>SALLE</var></span></kbd></dt>
+<dd><p>Identifiant de la salle à analyser (ex: « RT14 »)</p>
 </dd>
-<dt>Returns:</dt><dd><dl class="simple">
-<dt>tuple: Deux listes contenant les heures de début et de fin des événements</dt><dd><ul class="simple">
-<li><p>heures_debut (list): Liste des objets datetime pour les débuts d’événements</p></li>
-<li><p>heures_fin (list): Liste des objets datetime pour les fins d’événements</p></li>
-</ul>
+<dt><kbd><span class="option">--date-debut <var>DATE</var></span></kbd></dt>
+<dd><p>Date de début de l’analyse (format: YYYY-MM-DD)</p>
+</dd>
+<dt><kbd><span class="option">--date-fin <var>DATE</var></span></kbd></dt>
+<dd><p>Date de fin de l’analyse (format: YYYY-MM-DD)</p>
+</dd>
+<dt><kbd><span class="option">--input-file <var>FICHIER</var></span></kbd></dt>
+<dd><p>Chemin vers le fichier ICS à analyser</p>
+</dd>
+<dt><kbd><span class="option">--output-dir <var>DOSSIER</var></span></kbd></dt>
+<dd><p>Dossier où sauvegarder le rapport HTML</p>
 </dd>
 </dl>
 </dd>
-<dt>Raises:</dt><dd><p>ValueError: Si le format de date dans le fichier ICS est invalide</p>
+<dt>Exemple d’utilisation:</dt><dd><dl class="simple">
+<dt>python3 planning_innocupation.py –salle RT14 –date-debut 2024-10-01 –date-fin 2024-12-31</dt><dd><p>–input-file « ADECal (1).ics » –output-dir resultats</p>
 </dd>
-<dt>Note:</dt><dd><ul class="simple">
-<li><p>Le fichier ICS doit être au format standard iCalendar</p></li>
-<li><p>Les dates sont automatiquement ajustées au fuseau horaire (+2 heures)</p></li>
+</dl>
+</dd>
+<dt>Sortie:</dt><dd><ul class="simple">
+<li><p>Crée un fichier HTML dans le dossier HTML</p></li>
+<li><p>Le rapport liste toutes les plages d’inoccupation par date</p></li>
 </ul>
+</dd>
+</dl>
+</section>
+<section id="module-extraction_evenements.extraction_evenements">
+<span id="module-d-extraction-des-evenements"></span><h3>Module d’extraction des évènements<a class="headerlink" href="#module-extraction_evenements.extraction_evenements" title="Lien permanent vers cette rubrique"></a></h3>
+<p>Extrait les heures de début et de fin des événements pour une salle donnée.</p>
+<dl>
+<dt>Args:</dt><dd><p>lines (list): Liste des lignes du fichier ICS
+salle (str): Identifiant de la salle à rechercher (ex: « RT04 »)</p>
+</dd>
+<dt>Returns:</dt><dd><p>tuple: Deux listes contenant les heures de début et de fin des événements</p>
+<p>Ajuster_heure :</p>
+<blockquote>
+<div><p>Cette fonction ajuste l’heure selon la période été/hiver</p>
+</div></blockquote>
 </dd>
 </dl>
 </section>
 <section id="module-trouver_plages_libres.trouver_plages_libres">
 <span id="module-de-calcul-des-plages-libres"></span><h3>Module de calcul des plages libres<a class="headerlink" href="#module-trouver_plages_libres.trouver_plages_libres" title="Lien permanent vers cette rubrique"></a></h3>
-<p>Trouve les plages horaires libres entre les événements.</p>
-<p>Auteur: Nolann
+<p>Trouve et calcule toutes les plages horaires libres entre les événements donnés.</p>
+<p>Cette fonction analyse les événements fournis et détermine les périodes d’inoccupation
+entre 7h30 et 18h00 pour chaque jour. Elle prend en compte :
+- Les plages libres en début de journée (avant le premier cours)
+- Les plages libres entre les cours
+- Les plages libres en fin de journée (après le dernier cours)
+- Les journées complètement libres</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>heures_debut (list[datetime]): Liste des dates et heures de début des événements
+heures_fin (list[datetime]): Liste des dates et heures de fin des événements</p>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>list[tuple]: Liste des plages libres, chaque plage étant un tuple contenant :</dt><dd><ul class="simple">
+<li><p>date (datetime.date): La date de la plage libre</p></li>
+<li><p>heure_debut (str): L’heure de début au format « HH:MM »</p></li>
+<li><p>heure_fin (str): L’heure de fin au format « HH:MM »</p></li>
+<li><p>duree (float): La durée de la plage en heures</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+<section id="module-creer_html.creer_html">
+<span id="module-de-generation-des-pages-html"></span><h3>Module de génération des pages HTML<a class="headerlink" href="#module-creer_html.creer_html" title="Lien permanent vers cette rubrique"></a></h3>
+<p>Crée une page HTML présentant les plages libres.</p>
+<p>Auteur: Ahmed
+Date de création: 2024-03-20
+Dernière modification: 2024-03-20</p>
+<dl>
+<dt>Args:</dt><dd><p>salle (str): Identifiant de la salle
+plages_libres (list): Liste des plages libres au format:</p>
+<blockquote>
+<div><p>[(date, heure_debut, heure_fin, duree), …]
+- date (datetime.date): Date de la plage
+- heure_debut (str): Heure de début « HH:MM »
+- heure_fin (str): Heure de fin « HH:MM »
+- duree (float): Durée en heures</p>
+</div></blockquote>
+</dd>
+<dt>Returns:</dt><dd><p>str: Code HTML formaté contenant le tableau des plages libres</p>
+</dd>
+<dt>Raises:</dt><dd><p>ValueError: Si le format des plages libres est incorrect</p>
+</dd>
+<dt>Note:</dt><dd><p>Le HTML généré inclut un style CSS basique pour le tableau</p>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="creer_html.convertir_duree">
+<span class="sig-prename descclassname"><span class="pre">creer_html.</span></span><span class="sig-name descname"><span class="pre">convertir_duree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">duree</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/creer_html.html#convertir_duree"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#creer_html.convertir_duree" title="Lien permanent vers cette définition"></a></dt>
+<dd><p>Convertit une durée décimale en format Heures:Minutes.</p>
+<p>Auteur: Ahmed
 Date de création: 2024-03-20
 Dernière modification: 2024-03-20</p>
 <dl class="simple">
-<dt>Args:</dt><dd><p>heures_debut (list): Liste des objets datetime représentant les débuts d’événements
-heures_fin (list): Liste des objets datetime représentant les fins d’événements</p>
+<dt>Args:</dt><dd><p>duree (float): Durée en heures décimales (ex: 1.5 pour 1h30)</p>
 </dd>
-<dt>Returns:</dt><dd><dl class="simple">
-<dt>list: Liste de tuples contenant les plages libres avec le format:</dt><dd><p>(date, heure_debut, heure_fin, duree)
-- date (datetime.date): Date de la plage libre
-- heure_debut (str): Heure de début au format « HH:MM »
-- heure_fin (str): Heure de fin au format « HH:MM »
-- duree (float): Durée en heures</p>
+<dt>Returns:</dt><dd><p>str: Durée formatée en « HH:MM »</p>
 </dd>
 </dl>
-</dd>
-<dt>Note:</dt><dd><ul class="simple">
-<li><p>Les plages sont calculées entre 7h30 et 18h00</p></li>
-<li><p>Les listes heures_debut et heures_fin doivent avoir la même longueur</p></li>
-<li><p>Les dates sont triées chronologiquement</p></li>
-</ul>
-</dd>
-<dt>Raises:</dt><dd><p>ValueError: Si les listes d’entrée n’ont pas la même longueur
-TypeError: Si les entrées ne sont pas des listes de datetime</p>
-</dd>
-</dl>
+</dd></dl>
+
 </section>
 </section>
 </section>
