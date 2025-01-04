@@ -29,4 +29,4 @@ L’ensemble de la documentation du projet dans le répertoire “docs” qui co
 
 Le programme se retrouvera quant à lui dans le répertoire  “Icalendar_Inoccupation_des_salles”. Vous pourrez y retrouver tous nos modules ainsi que le programme principal.
 
-Pour plus d’informations je vous invite donc alors à consulter la documentation du projet.
+Pour plus d'informations, je vous invite à consulter la documentation du projet.
