@@ -1,34 +1,40 @@
-
 from datetime import datetime, timedelta
+
+def ajuster_heure(date):
+    """
+   Cette fonction convertit une heure UTC en heure locale française en appliquant :
+    - UTC+1 pendant l'heure d'hiver
+    - UTC+2 pendant l'heure d'été
+
+    Args:
+        date (datetime): Date et heure en UTC à convertir
+
+    Returns:
+        datetime: Date et heure convertie en heure locale française
+    """
+    debut_ete = datetime(2024, 3, 31)
+    debut_hiver = datetime(2024, 10, 27)
+    if debut_ete <= date < debut_hiver:
+        return date + timedelta(hours=2)
+    else:
+        return date + timedelta(hours=1)
 
 def extraction_evenements(lines, salle):
     """
-    Extrait les heures de début et de fin des événements pour une salle donnée.
-    
+    Cette fonction parcourt le fichier ICS pour trouver tous les événements
+    correspondant à la salle spécifiée et en extrait les heures de début et de fin.
+
     Args:
         lines (list): Liste des lignes du fichier ICS
         salle (str): Identifiant de la salle à rechercher (ex: "RT04")
-        
+
     Returns:
-        tuple: Deux listes contenant les heures de début et de fin des événements
-        
-	Ajuster_heure :
-		
-		Cette fonction ajuste l'heure selon la période été/hiver        
-        
+        tuple: Deux listes contenant :
+            - heures_debut (list[datetime]): Heures de début des événements
+            - heures_fin (list[datetime]): Heures de fin des événements
     """
     heures_debut = []
     heures_fin = []
-    
-    def ajuster_heure(date):
-        """Ajuste l'heure selon la période été/hiver"""
-        debut_ete = datetime(2024, 3, 31)  
-        debut_hiver = datetime(2024, 10, 27)  
-        
-        if debut_ete <= date < debut_hiver:
-            return date + timedelta(hours=2)  
-        else:
-            return date + timedelta(hours=1)  
     
     for i in range(len(lines)):
         ligne = lines[i].strip()
@@ -47,3 +53,4 @@ def extraction_evenements(lines, salle):
                         heures_fin.append(date)
     
     return heures_debut, heures_fin 
+    

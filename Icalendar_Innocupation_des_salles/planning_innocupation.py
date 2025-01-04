@@ -1,75 +1,82 @@
-
-
 from datetime import datetime
 import os
-import sys
 from extraction_evenements import extraction_evenements
 from trouver_plages_libres import trouver_plages_libres
 from creer_html import creer_html
-
-
-
+import argparse
 
 def main():
-	"""
-Programme principal d'éxecution qui va analyser les plages d'inoccupation des salles à partir du fichier ICS. il est en quelque sorte le programme final qui va utiliser tout les modules
-que nous avons crées pour arriver à ses fins.
+    """
+    Fonction principale du programme.
 
+    Cette fonction :
+    1. Traite les arguments de ligne de commande
+    2. Lit le fichier ICS d'emploi du temps
+    3. Extrait les événements de la salle spécifiée
+    4. Calcule les plages libres
+    5. Génère un fichier HTML avec les résultats
 
- 
-Arguments du programme:
-    --salle SALLE           Identifiant de la salle à analyser (ex: "RT14")
-    --date-debut DATE      Date de début de l'analyse (format: YYYY-MM-DD)
-    --date-fin DATE        Date de fin de l'analyse (format: YYYY-MM-DD)
-    --input-file FICHIER   Chemin vers le fichier ICS à analyser
-    --output-dir DOSSIER   Dossier où sauvegarder le rapport HTML
- 
+    Arguments en ligne de commande :
+        --salle: Identifiant de la salle (ex: "RT04")
+        --input-file: Chemin du fichier ICS (ex: "ADECal (1).ics")
+        --output-dir: Dossier de sortie (ex: "html")
+        --date-debut: Date de début (format: YYYY-MM-DD)
+        --date-fin: Date de fin (format: YYYY-MM-DD)
 
-Exemple d'utilisation:
-    python3 planning_innocupation.py --salle RT14 --date-debut 2024-10-01 --date-fin 2024-12-31 
-                         --input-file "ADECal (1).ics" --output-dir resultats
+    Returns:
+        Notre page html avec les résultat souhaité.
+    """
+    
+    parser = argparse.ArgumentParser(
+        description="Analyse des plages d'inoccupation des salles à partir du fichier ICS"
+    )
 
-Sortie:
-    - Crée un fichier HTML dans le dossier HTML    
-    - Le rapport liste toutes les plages d'inoccupation par date
+    # Définition des arguments
+    parser.add_argument(
+        "--salle",
+        required=True,
+        help="Identifiant de la salle (ex: RT04)"
+    )
+    parser.add_argument(
+        "--input-file",
+        required=True,
+        help="Chemin vers le fichier ICS"
+    )
+    parser.add_argument(
+        "--output-dir",
+        required=True,
+        help="Dossier de sortie"
+    )
+    parser.add_argument(
+        "--date-debut",
+        required=True,
+        type=lambda s: datetime.strptime(s, '%Y-%m-%d'),
+        help="Date de début au format YYYY-MM-DD"
+    )
+    parser.add_argument(
+        "--date-fin",
+        required=True,
+        type=lambda s: datetime.strptime(s, '%Y-%m-%d'),
+        help="Date de fin au format YYYY-MM-DD"
+    )
 
-"""
    
-	
-input_file = "ADECal (1).ics"
-output_dir = "output"
-salle = None
-date_debut = None
-date_fin = None
+    args = parser.parse_args()
 
-    # Récupération des arguments
-for i in range(len(sys.argv)):
-       if sys.argv[i] == "--salle":
-           salle = sys.argv[i + 1]
-       elif sys.argv[i] == "--input-file":
-           input_file = sys.argv[i + 1]
-       elif sys.argv[i] == "--output-dir":
-           output_dir = sys.argv[i + 1]
-       elif sys.argv[i] == "--date-debut":
-           date_debut = datetime.strptime(sys.argv[i + 1], "%Y-%m-%d")
-       elif sys.argv[i] == "--date-fin":
-           date_fin = datetime.strptime(sys.argv[i + 1], "%Y-%m-%d")
+    # Lecture du fichier ICS
+    with open(args.input_file, "r") as f:
+        lines = f.readlines()
 
     
-with open(input_file, "r") as f:
-    lines = f.readlines()
-
-    heures_debut, heures_fin = extraction_evenements(lines, salle)
+    heures_debut, heures_fin = extraction_evenements(lines, args.salle)
     plages_libres = trouver_plages_libres(heures_debut, heures_fin)
-    plages_filtrees = [p for p in plages_libres if date_debut.date() <= p[0] <= date_fin.date()]
+    plages_filtrees = [p for p in plages_libres if args.date_debut.date() <= p[0] <= args.date_fin.date()]
 
     # Création du fichier HTML
-    if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
-
-    html = creer_html(salle, plages_filtrees)
-    with open(os.path.join(output_dir, f"plages_libres_{salle}.html"), "w", encoding="utf-8") as f:
-        f.write(html)
+    os.makedirs(args.output_dir, exist_ok=True)
+    with open(os.path.join(args.output_dir, f"plages_libres_{args.salle}.html"), "w", encoding="utf-8") as f:
+        f.write(creer_html(args.salle, plages_filtrees))
 
 
-main()
+if __name__ == '__main__':
+    main()

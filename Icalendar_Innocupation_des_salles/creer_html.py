@@ -1,18 +1,14 @@
+
 def convertir_duree(duree):
     """
-    Convertit une durée décimale en format Heures:Minutes.
-    
-    Auteur: Ahmed
-    Date de création: 2024-03-20
-    Dernière modification: 2024-03-20
-    
-    Arguments:
-        duree (float): Durée en heures décimales (ex: 1.5 pour 1h30)
-        
+     Cette fonction prend une durée en heures décimales et la convertit
+    en format horaire  (HH:MM).
+
+    Args:
+        duree (float): Durée en heures (ex: 1.5 pour 1h30)
+
     Returns:
-        str: Durée formatée en "HH:MM"
-        
-        
+        str: Durée formatée (ex: "1:30" pour 1.5 heures)
     """
     heures = int(duree)
     minutes = int((duree - heures) * 60)
@@ -20,25 +16,19 @@ def convertir_duree(duree):
 
 def creer_html(salle, plages_libres):
     """
-    Crée une page HTML présentant les plages libres.
-    
-    Auteur: Ahmed
-    Date de création: 2024-03-20
-    Dernière modification: 2024-03-20
-    
-    Arguments:
-        salle (str): Identifiant de la salle
-        plages_libres (list): Liste des plages libres au format:
-            [(date, heure_debut, heure_fin, duree), ...]
+    Cette fonction crée un tableau HTML contenant toutes les plages
+    d'inoccupation de la salle, avec leurs dates, heures et durées.
+
+    Args:
+        salle (str): Identifiant de la salle (ex: "RT04")
+        plages_libres (list[tuple]): Liste des plages libres contenant :
             - date (datetime.date): Date de la plage
             - heure_debut (str): Heure de début "HH:MM"
             - heure_fin (str): Heure de fin "HH:MM"
             - duree (float): Durée en heures
-            
+
     Returns:
-        str: Code HTML formaté contenant le tableau des plages libres
-        
-   
+        str: Code HTML complet de la page
     """
     html = f"""
     <html>

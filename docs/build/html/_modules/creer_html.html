@@ -70,51 +70,37 @@
            <div itemprop="articleBody">
              
   <h1>Code source de creer_html</h1><div class="highlight"><pre>
-<div class="viewcode-block" id="convertir_duree"><a class="viewcode-back" href="../content/code.html#creer_html.convertir_duree">[docs]</a><span></span><span class="k">def</span> <span class="nf">convertir_duree</span><span class="p">(</span><span class="n">duree</span><span class="p">):</span>
+<span></span>
+<div class="viewcode-block" id="convertir_duree"><a class="viewcode-back" href="../content/code.html#creer_html.convertir_duree">[docs]</a><span class="k">def</span> <span class="nf">convertir_duree</span><span class="p">(</span><span class="n">duree</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Convertit une durée décimale en format Heures:Minutes.</span>
-<span class="sd">    </span>
-<span class="sd">    Auteur: Ahmed</span>
-<span class="sd">    Date de création: 2024-03-20</span>
-<span class="sd">    Dernière modification: 2024-03-20</span>
-<span class="sd">    </span>
+<span class="sd">     Cette fonction prend une durée en heures décimales et la convertit</span>
+<span class="sd">    en format horaire  (HH:MM).</span>
+
 <span class="sd">    Args:</span>
-<span class="sd">        duree (float): Durée en heures décimales (ex: 1.5 pour 1h30)</span>
-<span class="sd">        </span>
+<span class="sd">        duree (float): Durée en heures (ex: 1.5 pour 1h30)</span>
+
 <span class="sd">    Returns:</span>
-<span class="sd">        str: Durée formatée en &quot;HH:MM&quot;</span>
-<span class="sd">        </span>
-<span class="sd">        </span>
+<span class="sd">        str: Durée formatée (ex: &quot;1:30&quot; pour 1.5 heures)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">heures</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">duree</span><span class="p">)</span>
     <span class="n">minutes</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">duree</span> <span class="o">-</span> <span class="n">heures</span><span class="p">)</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
     <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">heures</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">minutes</span><span class="si">:</span><span class="s2">02d</span><span class="si">}</span><span class="s2">&quot;</span></div>
 
-<span class="k">def</span> <span class="nf">creer_html</span><span class="p">(</span><span class="n">salle</span><span class="p">,</span> <span class="n">plages_libres</span><span class="p">):</span>
+<div class="viewcode-block" id="creer_html"><a class="viewcode-back" href="../content/code.html#creer_html.creer_html">[docs]</a><span class="k">def</span> <span class="nf">creer_html</span><span class="p">(</span><span class="n">salle</span><span class="p">,</span> <span class="n">plages_libres</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Crée une page HTML présentant les plages libres.</span>
-<span class="sd">    </span>
-<span class="sd">    Auteur: Ahmed</span>
-<span class="sd">    Date de création: 2024-03-20</span>
-<span class="sd">    Dernière modification: 2024-03-20</span>
-<span class="sd">    </span>
+<span class="sd">    Cette fonction crée un tableau HTML contenant toutes les plages</span>
+<span class="sd">    d&#39;inoccupation de la salle, avec leurs dates, heures et durées.</span>
+
 <span class="sd">    Args:</span>
-<span class="sd">        salle (str): Identifiant de la salle</span>
-<span class="sd">        plages_libres (list): Liste des plages libres au format:</span>
-<span class="sd">            [(date, heure_debut, heure_fin, duree), ...]</span>
+<span class="sd">        salle (str): Identifiant de la salle (ex: &quot;RT04&quot;)</span>
+<span class="sd">        plages_libres (list[tuple]): Liste des plages libres contenant :</span>
 <span class="sd">            - date (datetime.date): Date de la plage</span>
 <span class="sd">            - heure_debut (str): Heure de début &quot;HH:MM&quot;</span>
 <span class="sd">            - heure_fin (str): Heure de fin &quot;HH:MM&quot;</span>
 <span class="sd">            - duree (float): Durée en heures</span>
-<span class="sd">            </span>
+
 <span class="sd">    Returns:</span>
-<span class="sd">        str: Code HTML formaté contenant le tableau des plages libres</span>
-<span class="sd">        </span>
-<span class="sd">    Raises:</span>
-<span class="sd">        ValueError: Si le format des plages libres est incorrect</span>
-<span class="sd">        </span>
-<span class="sd">    Note:</span>
-<span class="sd">        Le HTML généré inclut un style CSS basique pour le tableau</span>
+<span class="sd">        str: Code HTML complet de la page</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">html</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">    &lt;html&gt;</span>
@@ -136,7 +122,7 @@
         <span class="n">html</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;&lt;tr&gt;&lt;td&gt;</span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s2">&lt;/td&gt;&lt;td&gt;</span><span class="si">{</span><span class="n">debut</span><span class="si">}</span><span class="s2">&lt;/td&gt;&lt;td&gt;</span><span class="si">{</span><span class="n">fin</span><span class="si">}</span><span class="s2">&lt;/td&gt;&lt;td&gt;</span><span class="si">{</span><span class="n">duree_formatee</span><span class="si">}</span><span class="s2">&lt;/td&gt;&lt;/tr&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
     
     <span class="n">html</span> <span class="o">+=</span> <span class="s2">&quot;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;&quot;</span>
-    <span class="k">return</span> <span class="n">html</span> 
+    <span class="k">return</span> <span class="n">html</span> </div>
 </pre></div>
 
            </div>
