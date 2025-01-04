@@ -1,0 +1,9 @@
+Il vous faudra python 3 installé sur la machine.
+
+Les modules requis sont:
+
+Datetime
+OS
+Argparse
+
+Ainsi que tous les modules développés dans le répertoire Icalendar_Innocupation_des_salles
