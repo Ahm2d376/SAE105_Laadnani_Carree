@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Innocupation des salles &mdash; Documentation Icalendar_SAE105 janvier</title>
+  <title>Inoccupation des salles &mdash; Documentation Icalendar_SAE105 janvier</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   
@@ -44,12 +44,12 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="objectifs.html">Objectifs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cahier_des_charges.html">I-calendar : inoccupation des salles</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Innocupation des salles</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Inoccupation des salles</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#utilisation-du-programme">Utilisation du programme</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#documentations-des-fonctions-des-modules">Documentations des fonctions des modules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#module-principal-planning-innocupation-py">Module principal (planning_innocupation.py)</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#planning_innocupation.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-principal-planning-inoccupation-py">Module principal (planning_inoccupation.py)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#planning_inoccupation.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#module-d-extraction-des-evenements">Module d’extraction des évènements</a><ul>
@@ -86,7 +86,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Innocupation des salles</li>
+      <li class="breadcrumb-item active">Inoccupation des salles</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/content/code.rst.txt" rel="nofollow"> Afficher la source de la page</a>
       </li>
@@ -96,11 +96,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="innocupation-des-salles">
-<h1>Innocupation des salles<a class="headerlink" href="#innocupation-des-salles" title="Lien permanent vers cette rubrique"></a></h1>
+  <section id="inoccupation-des-salles">
+<h1>Inoccupation des salles<a class="headerlink" href="#inoccupation-des-salles" title="Lien permanent vers cette rubrique"></a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Lien permanent vers cette rubrique"></a></h2>
-<p>Ce programme permet de trouver les plages d’innocupation des salles du département et de les organiser dans un tableau qui sera affiché grâce à une page HTML. Nous pourront choisir la salle qui nous intéresse mais aussi choisir deux dates entre lequel nous voulont connaître les plages d’innocupation ainsi que leurs durée.</p>
+<p>Ce programme permet de trouver les plages d’inoccupation des salles du département et de les organiser dans un tableau qui sera affiché grâce à une page HTML. Nous pourront choisir la salle qui nous intéresse mais aussi choisir deux dates entre lequel nous voulont connaître les plages d’innocupation ainsi que leurs durée.</p>
 </section>
 <section id="utilisation-du-programme">
 <h2>Utilisation du programme<a class="headerlink" href="#utilisation-du-programme" title="Lien permanent vers cette rubrique"></a></h2>
@@ -109,18 +109,18 @@
 <li><p>Il nous faudra python installé sur le PC.</p></li>
 <li><p>Il faudra ce placer dans le répertoire contenant le programme.</p></li>
 <li><p>Exécuter le programme principal avec la commande suivante :</p>
-<p>python3 planning_innocupation.py –salle RTxx –date-debut AAAA-MM-J –date-fin AAAA-MM-J –input-file « chemin vers le fichier Icalendar » –output-dir « chemin vers le répertoire où vous voulez sauvegarder votre page HTML »</p>
+<p>python3 planning_inoccupation.py –salle RTxx –date-debut AAAA-MM-J –date-fin AAAA-MM-J –input-file « chemin vers le fichier Icalendar » –output-dir « chemin vers le répertoire où vous voulez sauvegarder votre page HTML »</p>
 </li>
 <li><p>Une fois que cela est fait une page HTML contenant les résultats sera placée dans le répertoire HTML.</p></li>
 </ol>
 </section>
 <section id="documentations-des-fonctions-des-modules">
 <h2>Documentations des fonctions des modules<a class="headerlink" href="#documentations-des-fonctions-des-modules" title="Lien permanent vers cette rubrique"></a></h2>
-<section id="module-principal-planning-innocupation-py">
-<h3>Module principal (planning_innocupation.py)<a class="headerlink" href="#module-principal-planning-innocupation-py" title="Lien permanent vers cette rubrique"></a></h3>
+<section id="module-principal-planning-inoccupation-py">
+<h3>Module principal (planning_inoccupation.py)<a class="headerlink" href="#module-principal-planning-inoccupation-py" title="Lien permanent vers cette rubrique"></a></h3>
 <dl class="py function">
-<dt class="sig sig-object py" id="planning_innocupation.main">
-<span class="sig-prename descclassname"><span class="pre">planning_innocupation.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/planning_innocupation.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#planning_innocupation.main" title="Lien permanent vers cette définition"></a></dt>
+<dt class="sig sig-object py" id="planning_inoccupation.main">
+<span class="sig-prename descclassname"><span class="pre">planning_inoccupation.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/planning_inoccupation.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#planning_inoccupation.main" title="Lien permanent vers cette définition"></a></dt>
 <dd><p>Fonction principale du programme.</p>
 <p>Cette fonction :
 1. Traite les arguments de ligne de commande
@@ -149,7 +149,7 @@
 <dd><p>Cette fonction parcourt le fichier ICS pour trouver tous les événements
 correspondant à la salle spécifiée et en extrait les heures de début et de fin.</p>
 <dl class="simple">
-<dt>Args:</dt><dd><p>lines (list): Liste des lignes du fichier ICS
+<dt>Arguments:</dt><dd><p>lines (list): Liste des lignes du fichier ICS
 salle (str): Identifiant de la salle à rechercher (ex: « RT04 »)</p>
 </dd>
 <dt>Returns:</dt><dd><dl class="simple">
@@ -172,7 +172,7 @@ salle (str): Identifiant de la salle à rechercher (ex: « RT04 »)</p>
 <li><p>UTC+2 pendant l’heure d’été</p></li>
 </ul>
 <dl class="simple">
-<dt>Args:</dt><dd><p>date (datetime): Date et heure en UTC à convertir</p>
+<dt>Arguments:</dt><dd><p>date (datetime): Date et heure en UTC à convertir</p>
 </dd>
 <dt>Returns:</dt><dd><p>datetime: Date et heure convertie en heure locale française</p>
 </dd>
@@ -194,7 +194,7 @@ entre 7h30 et 18h00 pour chaque jour. Elle identifie :
 - Les plages libres en fin de journée
 - Les journées complètement libres</p>
 <dl class="simple">
-<dt>Args:</dt><dd><p>heures_debut (list[datetime]): Liste des dates et heures de début des événements
+<dt>Arguments:</dt><dd><p>heures_debut (list[datetime]): Liste des dates et heures de début des événements
 heures_fin (list[datetime]): Liste des dates et heures de fin des événements</p>
 </dd>
 <dt>Returns:</dt><dd><dl class="simple">
@@ -219,7 +219,7 @@ heures_fin (list[datetime]): Liste des dates et heures de fin des événements</
 <dd><p>Cette fonction crée un tableau HTML contenant toutes les plages
 d’inoccupation de la salle, avec leurs dates, heures et durées.</p>
 <dl>
-<dt>Args:</dt><dd><p>salle (str): Identifiant de la salle (ex: « RT04 »)
+<dt>Arguments:</dt><dd><p>salle (str): Identifiant de la salle (ex: « RT04 »)
 plages_libres (list[tuple]): Liste des plages libres contenant :</p>
 <blockquote>
 <div><ul class="simple">
@@ -243,7 +243,7 @@ plages_libres (list[tuple]): Liste des plages libres contenant :</p>
 </div></blockquote>
 <p>en format horaire  (HH:MM).</p>
 <dl class="simple">
-<dt>Args:</dt><dd><p>duree (float): Durée en heures (ex: 1.5 pour 1h30)</p>
+<dt>Arguments:</dt><dd><p>duree (float): Durée en heures (ex: 1.5 pour 1h30)</p>
 </dd>
 <dt>Returns:</dt><dd><p>str: Durée formatée (ex: « 1:30 » pour 1.5 heures)</p>
 </dd>

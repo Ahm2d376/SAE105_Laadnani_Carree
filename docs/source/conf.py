@@ -5,7 +5,7 @@
 
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../../Icalendar_Innocupation_des_salles'))
+sys.path.insert(0, os.path.abspath('../../Icalendar_Inoccupation_des_salles'))
 
 
 # -- Project information -----------------------------------------------------
