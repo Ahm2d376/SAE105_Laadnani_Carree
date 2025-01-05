@@ -12,12 +12,16 @@ def ajuster_heure(date):
     Returns:
         datetime: Date et heure convertie en heure locale française
     """
+    
     debut_ete = datetime(2024, 3, 31)
     debut_hiver = datetime(2024, 10, 27)
-    if debut_ete <= date < debut_hiver:
+    debut_ete_2025 = datetime(2025, 3, 30)
+    
+    if (debut_ete <= date < debut_hiver) or (date >= debut_ete_2025):
         return date + timedelta(hours=2)
     else:
         return date + timedelta(hours=1)
+
 
 def extraction_evenements(lines, salle):
     """
