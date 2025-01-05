@@ -1,5 +1,6 @@
 Voici le tutoriel d’installation et d’utilisation de notre programme 
 ---------------------------------------------------------------------
+Il faudra vous assurez d'avoir tout les prérequis disponible sur votre machine. Vous retrouverez les prérequis dans le fichier "requirements.txt"
 
 1) Dézipper l’archive SAE105_Laadnani_Carree dans votre répertoire personnel.
 
