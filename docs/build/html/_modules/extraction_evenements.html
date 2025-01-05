@@ -84,12 +84,16 @@
 <span class="sd">    Returns:</span>
 <span class="sd">        datetime: Date et heure convertie en heure locale française</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    
     <span class="n">debut_ete</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2024</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">31</span><span class="p">)</span>
     <span class="n">debut_hiver</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2024</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">27</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">debut_ete</span> <span class="o">&lt;=</span> <span class="n">date</span> <span class="o">&lt;</span> <span class="n">debut_hiver</span><span class="p">:</span>
+    <span class="n">debut_ete_2025</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2025</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="p">(</span><span class="n">debut_ete</span> <span class="o">&lt;=</span> <span class="n">date</span> <span class="o">&lt;</span> <span class="n">debut_hiver</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">date</span> <span class="o">&gt;=</span> <span class="n">debut_ete_2025</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">date</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">date</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div>
+
 
 <div class="viewcode-block" id="extraction_evenements"><a class="viewcode-back" href="../content/code.html#extraction_evenements.extraction_evenements">[docs]</a><span class="k">def</span> <span class="nf">extraction_evenements</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">salle</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
