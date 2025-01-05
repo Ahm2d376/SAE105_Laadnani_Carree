@@ -10,8 +10,7 @@ Il faudra vous assurez d'avoir tout les prérequis disponible sur votre machine.
 
 3) Une fois que vous vous trouvez dans le répertoire contenant le programme python il vous faudra exécuter la commande suivante :
 
-          python3 planning_innocupation.py --salle “salle de votre choix, ex : RT04”  --date-debut “année-mois-jour” --date-fin “année-mois-jour” --input-file "Chemin  vers le fichier d’entré Icalendar à exploiter" --output-dir "Chemin vers le répertoire de sortie où l’on veut
-             sauvegarder nos pages HTML"
+          python3 planning_innocupation.py --salle “salle de votre choix, ex : RT04”  --date-debut “année-mois-jour” --date-fin “année-mois-jour” --input-file "Chemin  vers le fichier d’entré Icalendar à exploiter" --output-dir "Chemin vers le répertoire de sortie où l’on veut sauvegarder nos pages HTML"
 
 Exemple d’une commande : 
 
