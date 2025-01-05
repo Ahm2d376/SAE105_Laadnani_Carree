@@ -18,6 +18,9 @@ Exemple d’une commande :
 
 Une fois que la commande a été exécuté avec les paramètres voulus, un fichier HTML contenant les résultats sera créer dans le répertoire de sortie spécifié
 
+Si vous voulez lancer le programme sur windows, vous devrez saisir la même commande l'exception du début de la  commande où l'on tape juste python au lieu de python3 et on utilisera des \ au lieu des / lorsque l'on rentre les chemins.
+ 
+
 ------------------------------------------------------------------------------
 
 
