@@ -1,14 +1,13 @@
 Voici le tutoriel d’installation et d’utilisation de notre programme 
 ---------------------------------------------------------------------
 
-Dézipper l’archive SAE105_Laadnani_Carree dans votre répertoire personnel.
+1) Dézipper l’archive SAE105_Laadnani_Carree dans votre répertoire personnel.
 
+2) Une fois l’archive dézippée il faudra vous placer dans le répertoire : 
 
- Une fois l’archive dézippée il faudra vous placer dans le répertoire : 
+          SAE105_Laadnani_Carree/Icalendar_Innocupation_des_salles
 
-SAE105_Laadnani_Carree/Icalendar_Innocupation_des_salles
-
-Une fois que vous vous trouvez dans le répertoire contenant le programme python il vous faudra exécuter la commande suivante :
+3) Une fois que vous vous trouvez dans le répertoire contenant le programme python il vous faudra exécuter la commande suivante :
 
 python3 planning_innocupation.py --salle “salle de votre choix, ex : RT04”  --date-debut “année-mois-jour” --date-fin “année-mois-jour” --input-file "Chemin  vers le fichier d’entré Icalendar à exploiter" --output-dir "Chemin vers le répertoire de sortie où l’on veut sauvegarder nos pages HTML"
 
@@ -18,8 +17,7 @@ python3 planning_inoccupation.py --salle RT14 --date-debut 2024-10-13 --date-fin
 
 Une fois que la commande a été exécuté avec les paramètres voulus, un fichier HTML contenant les résultats sera créer dans le répertoire de sortie spécifié
 
-
-
+------------------------------------------------------------------------------
 
 
 Pour l’arborescence du projet : 
