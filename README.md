@@ -1,4 +1,5 @@
-Voici le tutoriel d’installation et d’utilisation de notre programme : 
+Voici le tutoriel d’installation et d’utilisation de notre programme 
+---------------------------------------------------------------------
 
 Dézipper l’archive SAE105_Laadnani_Carree dans votre répertoire personnel.
 
